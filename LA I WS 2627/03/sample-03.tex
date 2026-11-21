@@ -1,0 +1,262 @@
+\documentclass{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\usepackage[yyyymmdd]{datetime}
+\renewcommand{\dateseparator}{-}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{titlesec}
+
+\renewcommand*\contentsname{Inhalt}
+\renewcommand*\proofname{Beweis}
+
+\titleformat{\section}
+{\normalfont\large\bfseries}{\thesection.}{1em}{}
+
+\lhead{Emma Bach}
+\rhead{\today}
+
+\pagestyle{fancy}
+
+\include{../../macros-and-packages-samples.tex}
+
+\begin{document}
+
+
+\title{\Huge\vspace{-1.5cm}\textbf{Lineare Algebra I im WS 26/27}}
+\author{Musterlösung 03}
+
+\maketitle
+
+\section*{Übung 3.1}
+\separator
+
+\tit{Man zeige: Eine Teilmenge eines Vektoraums ist linear abhängig genau dann, wenn sich mindestens einer ihrer Vektoren als Linearkombination der Übrigen schreiben läßt.}
+
+\begin{enumerate}
+	\item $"\Longrightarrow"$:
+	Angenommen, eine Teilmenge $L$ eines $K$-Vektorraums $V$ ist linear abhängig. Per Definition 1.6.3 ist dies genau dann der Fall, wenn es Vektoren $\vv_1, \hdots, \vv_r \in L$ und Skalare $\alpha_1, \hdots, \alpha_r \in K$ gibt derart, dass nicht alle $\alpha_i$ Null sind und dennoch
+	\begin{align*}
+		\sum_{i = 1}^r \alpha_i \vv_i = \alpha_1 \vv_1 + \hdots + \alpha_r \vv_r = \vzero.
+	\end{align*}
+	Sei also $\alpha_j \neq 0$. Wir können den Term $\alpha_j \vv_j$ aus der Summe subtrahieren und erhalten:
+	\begin{align*}
+		\sum_{i \neq j} \alpha_i \vv_i = - \alpha_j \vv_j
+	\end{align*}
+	Da $\alpha_j \neq 0$ ist gilt auch $-\alpha_j \neq 0$, also dürfen wir durch $-\alpha_j$ teilen und erhalten:
+	\begin{align*}
+		\sum_{i \neq j} -\frac{\alpha_i}{\alpha_j} \vv_i = \vv_j
+	\end{align*}
+	Ist also die Teilmenge $L \subseteq V$ linear abhängig, können wir einen ihrer Vektoren als Linearkombination der Übrigen schreiben.
+	\item $"\Longleftarrow"$: Angenommen, wir können einen Vektor einer Teilmenge $L \subseteq V$ als Linearkombination der anderen schreiben, also
+	\begin{align*}
+		\sum_{i \neq j} \alpha_i \vv_i = \vv_j
+	\end{align*}
+	Dann können wir den Vektor $\vv_j$ subtrahieren und erhalten eine Linearkombination 
+	\begin{align*}
+		\sum_{i = 1}^r \alpha_i \vv_i = \vzero
+	\end{align*}
+	mit $\alpha_j = -1 \neq 0$. Somit muss die Teilmenge $L$ linear abhängig gewesen sein.
+\end{enumerate}
+\qed
+\clearpage
+
+\section*{Übung 3.2}
+\separator
+
+\tit{Eine Teilmenge $H \subset V$ eines Vektorraums heißt eine \tib{Hyperebene} oder präziser \tib{lineare Hyperebene}\footnote{Später werdet ihr noch \tit{affine Hyperebenen} kennenlernen, welche intuitiv Hyperebenen sind, die den Ursprung nicht enthalten.}, wenn unsere Teilmenge ein echter Untervektorraum ist, der zusammen mit einem einzigen weiteren Vektor unseren ursprünglichen Vektorraum erzeugt. Man zeige, dass eine Hyperebene sogar zusammen mit jedem Vektor außerhalb besagter Hyperebene unseren ursprünglichen Vektorraum erzeugt.}
+\newpar
+Angenommen, eine Hyperebene $H$ erzeugt zusammen mit einem Vektor $\vv_H \in V \setminus H$ den Vektorraum $V$. Sei $\vv_V \in V \setminus H$ ein beliebiger weiterer Vektor außerhalb der Hyperebene. Da $H$ zusammen mit $\vv_H$ $V$ erzeugt, können wir $\vv_V$ schreiben als
+\begin{align*}
+	\vv_V = \vh + \alpha \vv_H
+\end{align*}
+für ein $\vh \in H$ und $\alpha \in K$. Da $\vv_V \notin H$, muss $\alpha \neq 0$ gelten. Somit können wir die Gleichung wie in Aufgabe 3.1 umstellen zu
+\begin{align*}
+	\vv_H = \alpha^{-1}\vh - \alpha^{-1}\vv_V
+\end{align*}
+Ist also $\vv \in V$ ein weiterer Vektor, existieren $\vw \in H, \beta \in K$ so, dass
+\begin{align*}
+	\vv 
+	&= \vw + \beta \vv_H\\
+	&= \vw' + \beta (\alpha^{-1}\vh - \alpha^{-1}\vv_V)\\
+	&= \underbrace{(\vw + \beta \alpha^{-1}\vh)}_{\in H} +\underbrace{(-\beta \alpha^{-1})}_{\in K}\vv_V
+\end{align*}
+Also erzeugt $H$ zusammen mit $\vv_V$ ebenfalls jeden beliebigen Vektor $\vv \in V$. \qed
+\clearpage
+
+\section*{Übung 3.3}
+\separator
+
+\tit{Sei $V$ ein Vektorraum mit zwei Untervektorräumen $U, W$. Man zeige: Ist $U \cup W$ ein Untervektorraum, so gilt $U \subseteq W$ oder $W \subseteq U$.}
+\newpar
+Wir zeigen die Aussage per Kontraposition, d.h. wir zeigen, dass $U \cup W$ kein Untervektorraum sein kann, wenn weder $U \subseteq W$ noch $W \subseteq U$ gilt.
+\newpar
+Nehmen wir also an, $U \subseteq W$ und $W \subseteq U$ gelten beide nicht. Dann gibt es ein $\vu \in U$ mit $\vu \notin W$ und ein $\vw \in W$ mit $\vw \notin U$.
+\newpar
+Wäre $U \cup W$ nun ein Untervektorraum, müsste dieser unter Addition von Vektoren aus $U$ mit Vektoren aus $W$ abgeschlossen sein. Der Vektor $\vv = \vu + \vw$ müsste also in $U \cup W$ enthalten sein. Per Definition der Vereinigung von Mengen ist dies der Fall, wenn $\vv \in U$ oder $\vv \in W$.
+\newpar
+Wäre $\vv \in U$, so müsste auch $\vv - \vu = (\vu + \vw) - \vu = \vw$ in $U$ enthalten sein, was der Annahme $\vw \notin U$ widerspricht. Analog hätten wir im Fall $\vv \in W$ auch $\vu \in W$, ebenfalls ein Widerspruch. Somit kann $U \cup W$ kein Untervektorraum gewesen sein.
+\qed
+\clearpage
+
+\section*{Übung 3.4}
+\separator
+\tit{Sei $M$ eine Menge. Wir definieren auf der Potenzmenge $\cP(M)$ die folgende 'Addition'  \footnote{Man nennt diese Operation die \tit{symmetrische Differenz} und schreibt statt $A \oplus B$ oft auch $A \triangle B$. Als logische Operation entspricht dies dem 'exklusiven Oder' (XOR).}:
+\begin{align*}
+	\oplus : \cP(M) \times \cP(M) &\to \cP(M)\\
+	(A,B) &\mapsto (A \setminus B) \cup (B \setminus A)
+\end{align*}
+}
+\begin{enumerate}
+	\item \tit{Sei $M = \lr{1,2}$. Beschreiben Sie die Addition auf den zugehörigen Potenzmengen, indem Sie folgende Tabelle ausfüllen:}
+	\begin{align*}
+		\begin{array}{|c|c|c|c|c|}
+			\hline
+			\oplus & \emptyset & \lr{1} & \lr{2} & \lr{1,2}\\
+			\hline
+			\emptyset & \emptyset & \lr{1} & \lr{2} & \lr{1,2}\\
+			\hline
+			\lr{1} & \lr{1} & \emptyset & \lr{1,2} & \lr{2}\\
+			\hline
+			\lr{2} & \lr{2} & \lr{1,2} & \emptyset & \lr{1}\\
+			\hline
+			\lr{1,2} & \lr{1,2} & \lr{2} & \lr{1} & \emptyset\\
+			\hline
+		\end{array}
+	\end{align*}
+	\item \tit{Ist $(\cP(M), \oplus)$ für $M = \lr{1,2}$ eine Gruppe? Kann man dies oder Teile der definierenden Eigenschaften einer Gruppe an der Tabelle ablesen? Wenn ja, welche? Kann man noch eine andere Eigenschaft dieser Gruppe direkt an der Tabelle ablesen?}
+	
+	Wir sehen aus der Tabelle direkt:
+	\begin{enumerate}
+		\item $\emptyset$ ist ein neutrales Element für $\oplus$,
+		\item Jedes Element von $\cP(M)$ ist sein eigenes $\oplus$-inverses,
+		\item Die Tabelle ist an der Diagonalen symmetrisch, also ist $\oplus$ kommutativ.
+	\end{enumerate}
+	Die Assoziativität kann man nicht direkt aus der Tabelle ablesen, da hierfür ein zweiter Verknüpfungsschritt notwendig wäre. Es gibt nun drei Möglichkeiten:
+	\begin{enumerate}
+		\item Alle Möglichkeiten in einer Fallunterscheidung durchprobieren,
+		\item die Assoziativität aus der nächsten Teilaufgabe folgern,
+		\item An der Verkmüpfungstabelle ablesen, dass unsere Operation $\oplus$ auf $\cP(M) = \cP(\lr{1,2})$ genau der Addition auf $\bZ/2\bZ \times \bZ/2\bZ$ entspricht, deren Assoziativität bereits bekannt ist.
+	\end{enumerate}
+	 
+	\item \tit{Zeigen Sie, dass $(\cP(M), \oplus)$ für jede Menge $M$ eine Gruppe ist.}
+	
+	Zu zeigen ist also, dass $\oplus$ assoziativ ist, dass ein neutrales Element existiert, und dass inverse Elemente existieren.
+	\begin{enumerate}
+		\item \ul{Assoziativität:} Dies lässt sich am einfachsten durch Unterscheidung der $8$ möglichen Fälle zeigen. Diese Fallunterscheidung kann man wiederum kompakt als Wahrheitstabelle darstellen:
+		\begin{align*}
+			\begin{array}{|ccc|cc|c|c|}
+				\hline
+				x \in A? & x \in B? & x \in C? & x \in A \oplus B? & x \in B \oplus C? & x \in (A \oplus B) \oplus C & x \in A \oplus (B \oplus C)?\\
+				\hline
+				F & F & F & F & F & F & F\\
+				\hline
+				F & F & W & F & W & W & W\\
+				\hline
+				F & W & F & W & W & W & W\\
+				\hline
+				F & W & W & W & F & F & F\\
+				\hline
+				W & F & F & W & F & W & W\\
+				\hline
+				W & F & W & W & W & F & F\\
+				\hline
+				W & W & F & F & W & F & F\\
+				\hline
+				W & W & W & F & F & W & W\\
+				\hline
+			\end{array}
+		\end{align*}
+		Wir haben in jedem möglichen Fall $x \in (A \oplus B) \oplus C$ genau dann, wenn $x \in A \oplus (B \oplus C)$, also ist die Operation assoziativ. Wir sehen insbesondere, dass sich eine symmetrische Differenz (bzw. ein XOR) in drei Variablen beschreiben lässt als "$x \in A \oplus B \oplus C$ genau dann, wenn $x$ in einer ungeraden Anzahl der gegebenen Mengen enthalten ist". Diese Muster bleibt auch bei längeren Verkettungen von symmetrischen Differenzen / XOR erhalten.
+		\item \ul{Neutrales Element:} Für jedes $A \in \cP(M)$ gilt
+		\begin{align*}
+			A \oplus \emptyset 
+			&= (A \setminus \emptyset) \cup (\emptyset \setminus A)\\
+			&= A \cup \emptyset\\
+			&= A,
+		\end{align*}
+		also ist die leere Menge ein $\oplus$-neutrales Element.
+		\item \ul{Inverse Elemente:} Für jedes $A \in \cP(M)$ gilt
+		\begin{align*}
+			A \oplus A
+			&= (A \setminus A) \cup (A \setminus A)\\
+			&= \emptyset \cup \emptyset\\
+			&= \emptyset,
+		\end{align*}
+		also ist jede Menge $A \in \cP(M)$ ihr eigenes $\oplus$-inverses Element.
+	\end{enumerate}
+	Alternativ könnte man die Erkenntnis $(\cP(\lr{1,2}), \oplus) \cong \bZ/2\bZ \times \bZ/2\bZ$ aus der letzten Teilaufgabe verallgemeinern, indem man zeigt, dass $(\cP(M), \oplus)$ im Allgemeinen isomorph zum Gruppenprodukt $(\bZ/2\bZ)^{|M|}$ ist, woraus direkt folgt, dass $(\cP(M), \oplus)$ die Gruppenaxiome erfüllt.
+	
+	\item \tit{Sei $\bF_2 = \bZ/2\bZ = \lr{0,1}$ der Körper mit zwei Elementen. Wir wollen für eine beliebige Menge $M$ auf $\cP(M)$ eine skalare Multiplikation
+	\begin{align*}
+		\odot : \bF_2 \times \cP(M) \to \cP(M)
+	\end{align*}
+	so definieren, dass $(\cP(M), \oplus, \odot)$ ein $\bF_2$-Vektorraum ist. Geben Sie ein solches $\odot$ an und zeigen Sie, dass $\cP(M)$ damit ein $\bF_2$-Vektorraum wird. Kann es noch ein anderes solches $\odot$ geben? Begründen Sie.
+	}
+
+	$\bF_2$ besteht nur aus dem neutralen Element $0$ der Addition und dem neutralen Element $1$ der Multiplikation. Die Vektorraumaxiome legen bereits fest, dass das Skalarprodukt eines Vektors mit dem neutralen Element der Multiplikation den selben Vektor ergeben muss, also
+	\begin{align*}
+		\forall &A \in \cP(M) :\\
+		&1 \odot A = A,
+	\end{align*} und aus Blatt 2 wissen wir, dass Skalarmultiplikation mit dem neutralen Element der Addition den Nullvektor ergeben muss. Da der Nullvektor genau das neutrale Element der Vektoraddition sein muss, also in unserem Fall das neutrale Element der Gruppe $(\cP(M), \oplus)$, gilt also
+	\begin{align*}
+		\forall &A \in \cP(M) :\\
+		&0 \odot A = 0_{\cP(M)} = \emptyset
+	\end{align*}
+	Somit ist bereits festgelegt, dass es nur einen Kandidaten für $\odot$ gibt. Zu zeigen ist nur noch, dass dieser tatsächlich eine Skalarmultiplikation ergibt. Zu zeigen ist also:
+	\begin{enumerate}
+		\item \ul{Kompatibilität von Skalarmultiplikation und Körpermultiplikation:}
+		
+		Seien $a,b \in \bF_2$ und $A \in \cP(M)$. Ist $a = 0$, gilt:
+		\begin{align*}
+			a \odot (b \odot A) &= 0 \odot (b \odot A) = \emptyset\\
+			(a \cdot b) \odot A &= 0 \odot A = \emptyset
+		\end{align*}
+		Ist $b = 0$, gilt:
+		\begin{align*}
+			a \odot (b \odot A) &= a \odot (0 \odot A) = a \odot \emptyset = \emptyset\\
+			(a \cdot b) \odot A &= 0 \odot A = \emptyset
+		\end{align*}
+		Ist $a = b = 1$, gilt:
+		\begin{align*}
+			a \odot (b \odot A) &= 1 \odot (1 \odot A) = 1 \odot A = A\\
+			(a \cdot b) \odot A &= 1 \odot A = A
+		\end{align*}
+		\item \ul{Distributivität der Skalarmultiplikation über der Vektoraddition:}
+		
+		Ist $a = 0$, gilt
+		\begin{align*}
+			0 \odot (A \oplus B) 
+			&= \emptyset\\ 
+			&= \emptyset \oplus \emptyset\\ 
+			&= (0 \odot A) \oplus (0 \odot B)
+		\end{align*}
+		Ist $a = 1$, gilt
+		\begin{align*}
+			1 \odot (A \oplus B)
+			&= A \oplus B\\
+			&= (1 \odot A) \oplus (1 \odot B)
+		\end{align*}
+		\item \ul{Distributivität der Skalarmultiplikation über der Körperaddition:}
+		Ist $a = b$, gelten $a + b = 0$ und $a \odot A = b \odot A$, also:
+		\begin{align*}
+			(a + b) \odot A
+			&= 0 \odot A\\
+			&= \emptyset\\
+			&= (a \odot A) \oplus (a \odot A)\\
+			&= (a \odot A) \oplus (b \odot A)
+		\end{align*}
+		Ist $a \neq b$, gilt $a + b = 1$, und von $a \odot A$ und $b \odot A$ ist genau eine Option $A$ und die andere Option $\emptyset$. Es folgt:
+		\begin{align*}
+			(a + b) \odot A
+			&= 1 \odot A\\
+			&= A\\
+			&= (a \odot A) \oplus (b \odot A)
+		\end{align*}
+	\end{enumerate}
+\end{enumerate}
+\end{document}

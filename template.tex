@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\usepackage[german]{babel}
+\usepackage[yyyymmdd]{datetime}
+\renewcommand{\dateseparator}{-}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{titlesec}
+
+\renewcommand*\contentsname{Inhalt}
+\renewcommand*\proofname{Beweis}
+
+\titleformat{\section}
+{\normalfont\large\bfseries}{\thesection.}{1em}{}
+
+\lhead{Emma Bach}
+\rhead{\today}
+
+\pagestyle{fancy}
+
+\include{../../macros-and-packages.tex}
+\newcommand{\seperator}{\vspace{-8pt}\hrule\vspace{8pt}}
+\usepackage{enumitem}
+\setlist[enumerate,1]{label = \alph*),
+	ref = \alph*}
+\setlist[enumerate,2]{label = \roman*),
+	ref = \theenumi.\roman*}
+
+\begin{document}
+
+
+\title{\Huge\vspace{-1.5cm}\textbf{Lineare Algebra I im WS 26/27}}
+\author{Musterlösung X}
+
+\maketitle
+
+\section*{Aufgabe 1}
+\seperator
+ 
+\end{document}
