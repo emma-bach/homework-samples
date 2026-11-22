@@ -27,8 +27,8 @@
 \begin{document}
 
 
-\title{\Huge\vspace{-1.5cm}\textbf{Lineare Algebra I im WS 26/27}}
-\author{Musterlösung 03}
+\title{\Huge\vspace{-1.5cm}\textbf{Lineare Algebra I im WS 26/27\\Musterlösung 03}}
+\author{Emma Bach}
 
 \maketitle
 
@@ -86,7 +86,6 @@ Ist also $\vv \in V$ ein weiterer Vektor, existieren $\vw \in H, \beta \in K$ so
 	&= \underbrace{(\vw + \beta \alpha^{-1}\vh)}_{\in H} +\underbrace{(-\beta \alpha^{-1})}_{\in K}\vv_V
 \end{align*}
 Also erzeugt $H$ zusammen mit $\vv_V$ ebenfalls jeden beliebigen Vektor $\vv \in V$. \qed
-\clearpage
 
 \section*{Übung 3.3}
 \separator
@@ -207,7 +206,7 @@ Wäre $\vv \in U$, so müsste auch $\vv - \vu = (\vu + \vw) - \vu = \vw$ in $U$ 
 		\forall &A \in \cP(M) :\\
 		&0 \odot A = 0_{\cP(M)} = \emptyset
 	\end{align*}
-	Somit ist bereits festgelegt, dass es nur einen Kandidaten für $\odot$ gibt. Zu zeigen ist nur noch, dass dieser tatsächlich eine Skalarmultiplikation ergibt. Zu zeigen ist also:
+	Somit ist $\odot$ bereits eindeutig festgelegt. Zu zeigen ist nur noch, dass $\odot$ tatsächlich eine Skalarmultiplikation über $(\cP(M), \oplus)$ ergibt. Wir wissen bereits, dass $(\cP(M), \oplus)$ eine kommutative Gruppe ist, zu zeigen sind also nur noch:
 	\begin{enumerate}
 		\item \ul{Kompatibilität von Skalarmultiplikation und Körpermultiplikation:}
 		
@@ -255,8 +254,12 @@ Wäre $\vv \in U$, so müsste auch $\vv - \vu = (\vu + \vw) - \vu = \vw$ in $U$ 
 			(a + b) \odot A
 			&= 1 \odot A\\
 			&= A\\
+			&= A \oplus \emptyset\\
 			&= (a \odot A) \oplus (b \odot A)
 		\end{align*}
 	\end{enumerate}
+	Somit ist $(\cP(M), \oplus, \odot)$ tatsächlich ein Vektorraum. \qed
+	
+	Fun Fact: Da jeder Vektorraum eine Basis hat, folgt $(\cP(M), \oplus, \odot) \cong (\bF_2^n, +, \cdot)$ für ein (eventuell unendliches) $n$, was ein weiterer Hinweis auf die Existenz des in Teilaufgabe 3 angedeuteten Isomorphismus $(\cP(M), \oplus) \cong (\bZ/2\bZ)^{|M|}$ ist.
 \end{enumerate}
 \end{document}

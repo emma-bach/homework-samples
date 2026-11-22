@@ -1,0 +1,168 @@
+\documentclass{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\usepackage[yyyymmdd]{datetime}
+\renewcommand{\dateseparator}{-}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{titlesec}
+
+\renewcommand*\contentsname{Inhalt}
+\renewcommand*\proofname{Beweis}
+
+\titleformat{\section}
+{\normalfont\large\bfseries}{\thesection.}{1em}{}
+
+\lhead{Emma Bach}
+\rhead{\today}
+
+\pagestyle{fancy}
+
+\include{../../macros-and-packages-samples.tex}
+
+\begin{document}
+
+
+\title{\Huge\vspace{-1.5cm}\textbf{Lineare Algebra I im WS 26/27\\Musterlösung 04}}
+\author{Emma Bach}
+
+\maketitle
+
+\section*{Übung 4.1}
+\separator
+
+\tit{Man zeige: Gegeben ein surjektiver Vektorraumhomomorphismus \emph{(also eine surjektive lineare Abbildung)} $g :U \surj V$ und eine Abbildung $f : V \to W$ in einen weiteren Vektorraum ist $f$ genau dann linear, wenn die Verknüpfung $f \circ g : U \to W$ linear ist.}
+
+Sind $g$ und $f$ linear, so wissen wir bereits, dass die Verknüpfung $f \circ g$ ebenfalls linear ist. Zu zeigen ist also nur, dass $f$ linear ist, wenn $f \circ g$ linear ist. 
+
+\newpar
+
+Sei also $f \circ g : U \to W$ linear. Seien $\vv_1, \vv_2 \in V$. 
+Da $g$ surjektiv ist, existieren $\vu_1, \vu_2 \in U$ mit $g(\vu_1) = \vv_1$ und $g(\vu_2) = \vv_2$. Unter Anwendung der Linearität von $g$ und $f \circ g$ folgt:
+\begin{align*}
+	f(\vv_1 + \vv_2) 
+	&= f(g(\vu_1) + (\vu_2))\\
+	&= f(g(\vu_1 + \vu_2))\\
+	&= (f \circ g)(\vu_1 + \vu_2)\\
+	&= (f \circ g)(\vu_1) + (f \circ g)(\vu_2)\\
+	&= f(g(\vu_1)) + f(g(\vu_2))\\
+	&= f(\vv_1) + f(\vv_2)
+\end{align*}
+und:
+\begin{align*}
+	f(\lambda \vv_1)
+	&=
+	f(\lambda g(\vu_1))\\
+	&=
+	f(g(\lambda\vu_1))\\
+	&=
+	(f \circ g)(\lambda \vu_1)\\
+	&=
+	\lambda (f \circ g)(\vu_1)\\
+	&=
+	\lambda f(g(\vu_1))\\
+	&=
+	\lambda f(\vv_1)
+\end{align*}
+somit ist auch $f$ linear.
+
+\clearpage
+
+\section*{Übung 4.2}
+\separator
+
+\tit{Man zeige: Gegeben ein Vektorraum $V$ und eine lineare Abbildung $f : V \to V$ bildet die Menge der von $f$ festgehaltenen Vektoren alias aller \tib{Fixvektoren von $f$}
+\begin{align*}
+	V^f := \lr{v \in V \mid f(v) = v}
+\end{align*}
+stets einen Untervektorraum $V^f \subseteq V$.}
+
+Zu zeigen ist also, dass $V^f$ den Nullvektor enthält und unter Vektoraddition und Skalarmultiplikation abgeschlossen ist.
+\begin{enumerate}
+	\item Es gilt $\vzero \in V^f$, da $f(\vzero) = \vzero$ sowieso für alle linearen Abbildungen $f$ gilt.
+	\item Sind $\vv, \vw \in V^f$, so gilt mit der Linearität von $f$
+	\begin{align*}
+		f(\vv + \vw) 
+		&=
+		f(\vv) + f(\vw)
+		=
+		\vv + \vw,
+	\end{align*}
+	also $\vv + \vw \in V^f$
+	\item Sind $\vv \in V^f$ und $\lambda \in K$, so gilt analog
+	\begin{align*}
+		f(\lambda \vv)
+		&=
+		\lambda f(\vv)
+		= 
+		\lambda \vv,
+	\end{align*}
+	also auch $\lambda \vv \in V$.
+\end{enumerate}
+Somit ist $V^f$ ein Untervektorraum von $V$.
+\newpar
+Diese Aufgabe ist eine Vorbereitung auf den späteren Umgang mit \tib{Eigenvektoren}, \tib{Eigenwerten} und \tib{Eigenräumen}. Ist $f : V \to V$ linear und $\lambda \in K$, nennen wir die Menge
+\begin{align*}
+	\Eig(f, \lambda) = \lr{v \in V \mid f(v) = \lambda v}
+\end{align*}
+den \tib{Eigenraum} von $f$ zum \tib{Eigenwert} $\lambda$, und dessen Elemente \tib{Eigenvektoren}. Mit den selben Argumenten wie in dieser Aufgabe folgt, dass auch $\Eig(f, \lambda)$ immer ein Untervektorraum von $V$ ist. 
+\newpar
+Eigenvektoren haben zahlreiche Anwendungen, sowohl in der reinen Mathematik als auch in praktischen Problemen der Numerik und der Natur- und Ingenieurwissenschaften, und werden deshalb noch zu einem sehr zentralen Teil der Vorlesungen LA I und II werden.
+
+\clearpage
+
+\section*{Übung 4.3}
+\separator
+
+\tit{Man zeige: Eine Abbildung $f : V \to W$ von Vektorräumen ist genau dann linear, wenn ihr Graph 
+\begin{align*}
+	\Gamma(f) = \lr{(v,f(v)) \mid v \in V} \subseteq V \times W
+\end{align*}
+ein Untervektorraum des Produkts ist.}
+
+\begin{enumerate}
+	\item "$\Longrightarrow$": Angenommen, $f$ ist linear. Seien $v_1, v_2 \in V$ und $\lambda \in K$. Dann gilt:
+	\begin{enumerate}
+		\item $f(\vzero_V) = \vzero_W$, also
+		\begin{align*}
+			\vzero_{V \times W} = (\vzero_V, \vzero_W) = (\vzero_V, f(\vzero_V)) \in \Gamma(f)
+		\end{align*}
+		\item $f(\vv_1 + \vv_2) = f(\vv_1) + f(\vv_2)$, also
+		\begin{align*}
+			(\vv_1, f(\vv_1)) + (\vv_2, f(\vv_2))
+			=
+			(\vv_1 + \vv_2, f(\vv_1) + f(\vv_2))
+			=
+			(\vv_1 + \vv_2, f(\vv_1 + \vv_2)) \in \Gamma(f)
+		\end{align*}
+		\item $f(\lambda \vv_1) = \lambda f(\vv_1)$, also
+		\begin{align*}
+			\lambda(\vv_1, f(\vv_1))
+			=
+			(\lambda \vv_1, \lambda f(\vv_1))
+			=
+			(\lambda \vv_1, f(\lambda \vv_1))
+			\in
+			\Gamma(f)
+		\end{align*}
+	\end{enumerate}
+	Somit enthält $\Gamma(f)$ den Nullvektor und ist unter Addition und Skalarmultiplikation abgeschlossen, ist also ein Untervektorraum.
+	\item "$\Longleftarrow$": Da $(\vv, f(\vv)) \in \Gamma(f)$ das einzige Element von $\Gamma(f)$ ist, deren erste Komponente $\vv$ ist folgt aus $(\vv, \vw) \in \Gamma(f)$ bereits $\vw = f(\vv)$. Ist $\Gamma(f)$ also ein Untervektorraum, so gilt:
+	\begin{enumerate}
+		\item Aus $(\vzero, \vzero) \in \Gamma(f)$ folgt $f(\vzero) = \vzero$.
+		\item Aus $$(\vv_1, f(\vv_1)) + (\vv_2, f(\vv_2)) = (\vv_1 + \vv_2, f(\vv_1) + f(\vv_2)) \in \Gamma(f)$$ folgt $f(\vv_1 + \vv_2) = f(\vv_1) + f(\vv_2)$.
+		\item Aus 
+		\begin{align*}
+			\lambda(\vv_1, f(\vv_1))
+			=
+			(\lambda \vv_1, \lambda f(\vv_1)) \in \Gamma(f)
+		\end{align*}
+		folgt $f(\lambda \vv_1) = \lambda f(\vv_1)$.
+	\end{enumerate}
+	Also ist $f$ linear.
+\end{enumerate}
+\end{document}
