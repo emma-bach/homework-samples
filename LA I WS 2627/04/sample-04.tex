@@ -213,5 +213,32 @@ ein Untervektorraum des Produkts ist.}
 		\end{align*}
 		also müssen $\va$ und $\vb$ linear abhängig sein. Sind $\va$ und $\vb$ also linear unabhängig, folgt direkt, dass die Koeffizienten eindeutig sind. Somit ist (D) äquivalent zu (B), also auch zur Aussage aus dem Schulbuch.
 	\end{enumerate}
+	
+	\clearpage
+	
+	\item \tit{In Übung 3.4 haben wir den $\bF_2$-Vektorraum $\cP(M)$ für eine Menge $M$ mit der Addition
+	\begin{align*}
+		\oplus : \cP(M) \times \cP(M) &\to \cP(M)\\
+		(A,B) &\mapsto (A \setminus B) \cup (B \setminus A)
+	\end{align*}
+	und der skalaren Multiplikation
+	\begin{align*}
+		\oplus : \bF_2 \times \cP(M) &\to \cP(M)\\
+		0 \oplus A &= \emptyset\\
+		1 \oplus A &= A
+	\end{align*}
+	betrachtet. Geben Sie eine Basis des Vektorraums $\cP(\lr{1,2})$ an. Wie viele Basen von diesem $\cP(\lr{1,2})$ gibt es? Begründen Sie.}
+
+	$\cP(\lr{1,2})$ hat vier Elemente: $\emptyset, \lr{1}, \lr{2}$ und $\lr{1,2}$. $\emptyset$ ist der Nullvektor, ist also von allen Vektoren linear abhängig und kann somit in keiner Basis enthalten sein. 
+	
+	Eine einelementige Teilmenge kann ebenfalls keine Basis sein, da $A \oplus A = \emptyset$ für alle Mengen $A$ gilt, und somit eine einelementige Teilmenge nur sich selbst und die Nullmenge erzeugen kann. 
+	
+	Die zweielementigen Teilmengen erzeugen hingegen ganz $\cP(\lr{1,2})$, denn es gilt:
+	\begin{enumerate}
+		\item $\lr{1} \oplus \lr{2} = \lr{1,2}$
+		\item $\lr{1} \oplus \lr{1,2} = \lr{2}$
+		\item $\lr{2} \oplus \lr{1,2} = \lr{1}$
+	\end{enumerate}
+	Da wir die Nullmenge wie eben beschrieben erzeugen können, indem wir einen beliebigen Vektor auf sich selbst addieren, folgt, dass jede zweielementige Teilmenge eine Basis ist. Somit gibt es drei Basen.
 \end{enumerate}
 \end{document}
