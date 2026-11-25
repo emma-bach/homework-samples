@@ -165,4 +165,53 @@ ein Untervektorraum des Produkts ist.}
 	\end{enumerate}
 	Also ist $f$ linear.
 \end{enumerate}
+
+\clearpage
+
+\section*{Übung 4.4}
+\separator
+\begin{enumerate}
+	\item 
+	\tit{In einem alten Schulbuch findet sich folgender Satz:
+	\newpar
+	Wenn für zwei Vektoren $\va$ und $\vb$ einer Ebene gilt
+	\begin{align*}
+		\va \neq \vzero, \quad \vb \neq \vzero, \quad \tit{und} \quad \va \nparallel \vb,
+	\end{align*}
+	dann kann jeder Vektor $\vp$ dieser Ebene nach $\va$ und $\vb$ zerlegt werden:
+	\begin{align*}
+		\vp = x\va + y \vb, \qquad x,y \in \bR.
+	\end{align*}
+	Die Koeffizienten $x$ und $y$ sind durch $\vp$, $\va$ und $\vb$ eindeutig bestimmt.
+	\newpar
+	Welcher der folgenden Aussagen sind korrekt? Welche davon entsprechen einer Umformulierung des obigen Satzes in die Spache der linearen Algebra? Begründen Sie.
+	}
+	\begin{enumerate}
+		\item[(A)] \tit{Seien $\va, \vb \in \bR^2$. Wenn $\va$ und $\vb$ linear unabhängig sind, dann ist jeder Vektor aus $\bR^2$ eine Linearkombination von $\va$ und $\vb$. Die Koeffizienten sind eindeutig bestimmt.}
+		
+		Zwei Vektoren $\va, \vb$ sind linear unabhängig genau dann, wenn kein $\lambda \in \bR$ so existiert, dass $\va = \lambda \vb$ oder $\vb = \lambda \va$. Dies ist genau dann der Fall, wenn $\va$ und $\vb$ nicht parallel sind. Im Schulbuch scheint Parallelität für Nullvektoren nicht definiert zu sein, also werden die Bedingungen $\va \neq \vzero$ und $\vb \neq \vzero$, durch die trivial $\vzero = 0 \cdot \va$ bzw. $\vzero = 0 \cdot \vb$ folgend würden, separat gefordert.
+		
+		Die Bedingung, dass jeder Vektor aus $\bR^2$ als eindeutige Linearkombination von $\va$ und $\vb$ geschrieben kann, entspricht ebenfalls genau der Bedingung aus dem Schulbuch. 
+		
+		\item[(B)] \tit{Seien $\va, \vb \in \bR^2$. Wenn $\lr{\va, \vb}$ eine Basis von $\bR^2$ ist, dann ist jeder Vektor aus $\bR^2$ eine Linearkombination von $\va$ und $\vb$. Die Koeffizienten sind eindeutig bestimmt.}
+		
+		Da $\bR^2$ zweidimensional ist, ist $\lr{\va, \vb}$ genau dann eine Basis, wenn $\va$ und $\vb$ linear unabhängig sind. (B) ist somit äquivalent zu (A), also auch zur Aussage aus dem Schulbuch.
+		
+		\item[(C)] \tit{Seien $\va, \vb \in \bR^2$. Wenn $\lr{\va, \vb}$ ein Erzeugendensystem von $\bR^2$ ist, dann ist jeder Vektor aus $\bR^2$ eine Linearkombination von $\va$ und $\vb$. Die Koeffizienten sind eindeutig bestimmt.}
+		
+		Da $\bR^2$ zweidimensional ist, ist jedes Erzeugendensystem, welches aus zwei Elementen besteht, minimal, und somit eine Basis. Somit ist (C) äquivalent zu (B), also auch zur Aussage aus dem Schulbuch.
+		
+		\item[(D)] \tit{Seien $\va, \vb \in \bR^2$. Wenn $\lr{\va, \vb}$ eine Basis von $\bR^2$ ist, dann ist jeder Vektor aus $\bR^2$ eine Linearkombination von $\va$ und $\vb$.}
+		
+		Zu zeigen ist, dass die Forderung eindeutiger Koeffizienten in (B) nicht nötig war. Angenommen, $\vv \in \bR^2$ lässt sich auf zwei verschiedene Arten als Linearkombination von $\va$ und $\vb$ darstellen:
+		\begin{align*}
+			\vv := \lambda_1 \va + \mu_1 \vb = \lambda_2 \va + \mu_2 \vb.
+		\end{align*} 
+		Da die Linearkombinationen verschieden sind, gilt entweder $\lambda_1 - \lambda_2 \neq 0$ oder $\mu_1 - \mu_2 \neq 0$. Durch Subtraktion erhalten wir somit eine nichttriviale Linearkombination von $\va$ und $\vb$, welche den Nullvektor ergibt:
+		\begin{align*}
+			\vzero = \vv - \vv = (\lambda_1 - \lambda_2) \va + (\mu_1 - \mu_2) \vb
+		\end{align*}
+		also müssen $\va$ und $\vb$ linear abhängig sein. Sind $\va$ und $\vb$ also linear unabhängig, folgt direkt, dass die Koeffizienten eindeutig sind. Somit ist (D) äquivalent zu (B), also auch zur Aussage aus dem Schulbuch.
+	\end{enumerate}
+\end{enumerate}
 \end{document}
